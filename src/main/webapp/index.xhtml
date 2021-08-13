@@ -2,10 +2,9 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
-	xmlns:of="http://omnifaces.org/functions">
+	xmlns:p="http://primefaces.org/ui" >
 <h:head>
-	<title>JSF and PrimeFaces</title>
+	<title>Maria Sin - Freikünstler - Aquarellbilder.</title>
 	<h:outputStylesheet>
 		.jqplot-series-canvas {
 			background: white;
@@ -38,42 +37,9 @@
 					</h:panelGrid>
 				</p:panel>
 
-				<p:panel id="reporting" header="Reporting"
+				<p:panel id="about" header="Über mich"
 					style="margin-bottom:20px">
-					<p:chart type="bar" model="#{indexBean.customerBarModel}"
-						style="height:300px" />
-				</p:panel>
-
-				<p:panel id="orders" header="Latest orders"
-					style="margin-bottom:20px">
-					<p:dataTable var="order" value="#{indexBean.orders}">
-						<p:column headerText="Order ID">
-							<h:outputText value="#{order.orderId}" />
-						</p:column>
-
-						<p:column headerText="Customer ID">
-							<h:outputText value="#{order.customerId}" />
-						</p:column>
-
-						<p:column headerText="Tax ID">
-							<h:outputText value="#{order.taxId}" />
-						</p:column>
-						<p:column headerText="Prodcut">
-							<h:outputText value="#{order.product}" />
-						</p:column>
-
-						<p:column headerText="Amount">
-							<h:outputText value="#{order.amount}" />
-						</p:column>
-
-						<p:column headerText="Express delivery">
-							<h:outputText value="#{order.expressDelivery}" />
-						</p:column>
-
-						<p:column headerText="Order date">
-							<h:outputText value="#{order.orderDate}" />
-						</p:column>
-					</p:dataTable>
+					<h:outputText value="Ich bin Maria Sin und ich male schöne Bilder." />
 				</p:panel>
 			</div>
 			<div class="ui-g-2" />
