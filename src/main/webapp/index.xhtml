@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui" >
 <h:head>
 	<title>Maria Sin - Freikünstler - Aquarellbilder.</title>
-	<h:outputStylesheet>
+	<h:outputStylesheet library="css" name="styles.css">
 		.jqplot-series-canvas {
 			background: white;
 		}
@@ -28,22 +28,12 @@
 		<div class="ui-g">
 			<div class="ui-g-2"></div>
 			<div class="ui-g-8">
-				<h1 style="text-align: center">Maria Sin - Aquarellbilder</h1>
-				<p:panel id="tryit" header="Try it" style="margin-bottom:20px">
-					<h:panelGrid columns="2" cellpadding="10">
-						<p:button outcome="customers" value="See all customers"
-							icon="pi pi-users" style="margin-right:20px;">
-						</p:button>
-						<p:button outcome="createOrder" value="Create a new order"
-							icon="pi pi-shopping-cart" style="margin-right:20px;">
-						</p:button>
-					</h:panelGrid>
-				</p:panel>
+				<h1 style="text-align: left">Gallery</h1>
+	
+				<ui:insert>
+					<ui:include src="gallery.xhtml"></ui:include>
+				</ui:insert>
 
-				<p:panel id="about" header="Über mich"
-					style="margin-bottom:20px">
-					<h:outputText value="Ich bin Maria Sin und ich male schöne Bilder." />
-				</p:panel>
 			</div>
 			<div class="ui-g-2" />
 		</div>

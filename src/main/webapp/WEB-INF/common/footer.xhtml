@@ -2,27 +2,17 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
-	xmlns:of="http://omnifaces.org/functions">
+	xmlns:p="http://primefaces.org/ui">
 <body>
 	<ui:composition>
 		<div class="p-grid">
 			<div class="ui-g">
 				<div class="ui-g-12">
-					<h3>Header in footer</h3>
-						<p:outputLabel value="Тут может быть инфонмация с контактными данными, она будет показаза в футере на каждой странице." />
+					<p:card>
 						<div>
-							<h:outputText value="мой интаграмм: ссылка" />
+							<h:outputText value="&#169; Copyright 2021 All rights reserved."></h:outputText>
 						</div>
-						<div>
-							<h:outputText value="мой фэйсбук: ссылка" />
-						</div>
-						<div>
-							<h:outputText value="мой ватсапп: ссылка" />
-						</div>
-						<div>
-							<h:outputText value="еще что-то: ссылка." />
-						</div>
+					</p:card>
 				</div>
 			</div>
 		</div>
