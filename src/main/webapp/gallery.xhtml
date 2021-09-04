@@ -23,10 +23,12 @@
 					</div> -->
 					<p:dialog widgetVar="#{image.id}_dlg" closable="true"
 						closeOnEscape="true" maximizable="true" minimizable="true" width="1200px"
-						fitViewport="true">
+						fitViewport="true" style="text-align: center;">
+						<f:facet name="header">
+							<h:outputText value="#{image.description}" />
+						</f:facet>
 						<div class="card">
-							<p:outputLabel value="Press Esc to close this view."></p:outputLabel>
-							<p:graphicImage width="1200px" name="#{image.path}" library="img"></p:graphicImage>
+							<p:graphicImage height="800px" name="#{image.path}" library="img" ></p:graphicImage>
 						</div>
 					</p:dialog>
 				</p:repeat>
