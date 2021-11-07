@@ -28,6 +28,9 @@ public class Image {
 //	@Lob
 	@Column(name="image")
 	private byte[] image;
+
+	@Column(name="imageSmall")
+	private byte[] imageSmall;
 	
 	@Column(name="price")
 	private float price;
@@ -35,19 +38,19 @@ public class Image {
 	@Transient
 	private String path;
 	
+	@Transient
+	private String pathSmall;
+	
 	public Image() {
 	}
 
-	
-	
-	public Image(Integer id, String description, String path) {
+	public Image(Integer id, String description, String path, String pathSmall) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.path = path;
+		this.pathSmall = pathSmall;
 	}
-
-
 
 	public Image(String description, byte[] image, float price, String path) {
 		super();
@@ -105,22 +108,47 @@ public class Image {
 		this.path = path;
 	}
 
+	public byte[] getImageSmall() {
+		return imageSmall;
+	}
+
+
+
+	public void setImageSmall(byte[] imageSmall) {
+		this.imageSmall = imageSmall;
+	}
+
+
+
+	public String getPathSmall() {
+		return pathSmall;
+	}
+
+
+
+	public void setPathSmall(String pathSmall) {
+		this.pathSmall = pathSmall;
+	}
+	
 	@Override
 	public String toString() {
 		return "Image [id=" + id + ", description=" + description + ", price=" + price + "]";
 	}
 
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Arrays.hashCode(image);
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + Arrays.hashCode(image);
+		result = prime * result + Arrays.hashCode(imageSmall);
+		result = prime * result + ((path == null) ? 0 : path.hashCode());
+		result = prime * result + ((pathSmall == null) ? 0 : pathSmall.hashCode());
 		result = prime * result + Float.floatToIntBits(price);
 		return result;
 	}
+
 
 
 	@Override
@@ -132,8 +160,6 @@ public class Image {
 		if (getClass() != obj.getClass())
 			return false;
 		Image other = (Image) obj;
-		if (!Arrays.equals(image, other.image))
-			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -143,6 +169,20 @@ public class Image {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (!Arrays.equals(image, other.image))
+			return false;
+		if (!Arrays.equals(imageSmall, other.imageSmall))
+			return false;
+		if (path == null) {
+			if (other.path != null)
+				return false;
+		} else if (!path.equals(other.path))
+			return false;
+		if (pathSmall == null) {
+			if (other.pathSmall != null)
+				return false;
+		} else if (!pathSmall.equals(other.pathSmall))
 			return false;
 		if (Float.floatToIntBits(price) != Float.floatToIntBits(other.price))
 			return false;

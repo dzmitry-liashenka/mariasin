@@ -13,6 +13,8 @@
 		<h:outputStylesheet name="metadata/icons.json" library="fontawesome" />
 		<h:outputStylesheet name="metadata/icons.json" library="fontawesome" />
 		<h:outputStylesheet name="styles.css" library="css" />
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+		<script data-ad-client="ca-pub-9948372161750078" async="true" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	</h:head>
 
 
@@ -20,16 +22,20 @@
 	<ui:insert name="menu">
 		<ui:include src="/WEB-INF/common/menu.xhtml" />
 	</ui:insert>
+	
+	<div class="card">
 		
 	<h1>Contacts</h1>	
 		
 	<p:outputPanel id="panel-contacts">
 		<div class="p-d-flex p-flex-column">
 			<div class="p-mb-2" style="padding-bottom: 20px;">
-				<p:outputLabel
+				<h:outputText
 					value="If you are interested in any of my artwork or you have collaboration ideas, please, feel free to contact me!" />
+				<h:outputText style="color: white;" value="Aquarellbilder. Gemälde mit Aquarellen gemalt.
+				Ich male das Meer und Seestücke mit Aquarellen und verkaufe meine schöne Gemälde."/>
 			</div>
-			<div class="p-mb-2">
+			<div class="p-mb-2" style="padding-top: 3px; padding-bottom: 10px;">
 				<p:outputLabel value="Email: ">
 					<h:outputLink value="mailto:maria.sin@yahoo.com">
 						<f:param name="subject"
@@ -44,12 +50,32 @@
 					<a href="https://www.instagram.com/oahu_dreaming/" target="blank">@oahu_dreaming</a>
 				</p:outputLabel>
 			</div>
+			<div class="p-mb-2" style="padding-top: 3px; padding-bottom: 10px;">
+				<p:outputLabel value="Purchase my original watercolours and prints on Etsy: ">
+					<a href="http://etsy.com/shop/AquarelleStories/" target="blank">Aquarelle Stories</a>
+				</p:outputLabel>
+			</div>
 		</div>
 	</p:outputPanel>
 
 	<ui:insert name="footer">
 		<ui:include src="/WEB-INF/common/footer.xhtml" />
 	</ui:insert>
-		
+	
+	</div>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async="true"
+		src="https://www.googletagmanager.com/gtag/js?id=G-XMNS8BHVBC"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'G-XMNS8BHVBC');
+	</script>
+
 </h:body>
 </html>
