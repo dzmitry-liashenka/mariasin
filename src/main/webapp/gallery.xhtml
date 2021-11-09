@@ -5,18 +5,12 @@
 	xmlns:p="http://primefaces.org/ui" >
 	
 <body>
-	<div class="card">
 		<h:form id="form">
 			<p:panelGrid id="gallery" class="p-d-inline" columns="3" layout="flex" rendered="true">
 				<p:repeat var="image" value="#{dataGridView.images}">
 					<p:commandLink onclick="PF('#{image.id}_dlg').show();">
-						<p:graphicImage class="image-gallery-border" name="#{image.pathSmall}" library="img"
-										 title="#{image.description}"
-										 style="overflow: hidden;
-										 width: 200px; 
-										 min-height: 200px;
-										 max-height: 200px;
-										 margin: 2px;">
+						<p:graphicImage class="image-gallery-border gallery" name="#{image.pathSmall}" library="img"
+										 title="#{image.description}">
 						</p:graphicImage>
 					</p:commandLink>
 					<p:dialog widgetVar="#{image.id}_dlg"  
@@ -31,13 +25,12 @@
 						<f:facet name="header">
 							<h:outputText value="#{image.description}" />
 						</f:facet>
-						<div class="card" >
-							<p:graphicImage name="#{image.path}" library="img" style="max-height: 100vh; max-width: 100vh" />
+						<div>
+							<p:graphicImage name="#{image.path}" library="img" style="max-height: 90vh; max-width: 90vh" />
 						</div>
 					</p:dialog>
 				</p:repeat>
 			</p:panelGrid>
 		</h:form>
-	</div>
 </body>
 </html>

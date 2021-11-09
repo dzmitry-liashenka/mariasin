@@ -1,6 +1,6 @@
 .image-gallery-border {
-border: 1px solid;
-border-color: black;
+border: 1px ridge;
+border-color: rgb(186, 189, 182);
 }
 .center-fit {
      max-width: 100%;
@@ -21,6 +21,16 @@ body .card .ui-panelgrid .ui-panelgrid-cell {
 	background: #ffffff;
 	color: #333333;
 	padding: 0.05rem 0.05rem;
+}
+
+/*Gallery */
+.gallery {
+  object-fit: cover;
+  overflow: hidden;
+  width: 200px; 
+  min-height: 200px;
+  max-height: 200px;
+  margin: 2px;
 }
 
 .center {
