@@ -37,6 +37,19 @@ body .card .ui-panelgrid .ui-panelgrid-cell {
     text-align: center;
 }
 
+.left {
+	text-align: left;
+}
+
+.container {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.content-inline {
+	display: block-inline;
+}
+
 .menuitem {
 	font-size: 1.5em;
 }

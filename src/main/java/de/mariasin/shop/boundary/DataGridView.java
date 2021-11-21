@@ -1,7 +1,9 @@
 package de.mariasin.shop.boundary;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -23,6 +25,7 @@ public class DataGridView implements Serializable {
 
 	private List<Image> images;
     private Image selectedImage;
+    
     
     @Inject
     private ImageService imageService;
@@ -59,4 +62,5 @@ public class DataGridView implements Serializable {
                 .addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_INFO, clientId + " multiview state has been cleared out", null));
     }
+    
 }

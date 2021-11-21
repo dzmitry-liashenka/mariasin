@@ -35,10 +35,10 @@ public class Image {
 	@Column(name="price")
 	private float price;
 
-	@Transient
+//	@Transient
 	private String path;
 	
-	@Transient
+//	@Transient
 	private String pathSmall;
 	
 	public Image() {

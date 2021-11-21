@@ -40,8 +40,10 @@ public class ImageService implements Serializable {
 	}
 	
     public List<Image> getImages() {
-        return new ArrayList<>(images);
+        return this.images;
     }
+    
+    
     
     
 

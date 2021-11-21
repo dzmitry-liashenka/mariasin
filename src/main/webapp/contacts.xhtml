@@ -22,14 +22,44 @@
 	<ui:insert name="menu">
 		<ui:include src="/WEB-INF/common/menu.xhtml" />
 	</ui:insert>
-	
-	
-<div class="center">
-	<h1>Contacts</h1>	
-</div>
 		
 	<p:outputPanel id="panel-contacts">
-		<div class="p-d-flex p-flex-column">
+		<div class="ui-g">
+			<div class="ui-g-12 center">
+				<h1>Contacts</h1>
+	
+				<div class="left container">
+					<div class="p-mb-2" style="padding-bottom: 20px;">
+						<h:outputText
+							value="If you are interested in any of my artwork or you have collaboration ideas, please, feel free to contact me!" />
+						<h:outputText style="color: white;" value="Aquarellbilder. Gemälde mit Aquarellen gemalt.
+						Ich male das Meer und Seestücke mit Aquarellen und verkaufe meine schöne Gemälde."/>
+					</div>
+					<div class="p-mb-2" style="padding-top: 3px; padding-bottom: 10px;">
+						<p:outputLabel value="Email: ">
+							<h:outputLink value="mailto:maria.sin@yahoo.com">
+								<f:param name="subject"
+									value="Ich interessiere mich für das Bild " />
+								<f:param name="body" value="Sehr geehrte Frau Sin," />
+								<h:outputText value="maria.sin@yahoo.com" />
+							</h:outputLink>
+						</p:outputLabel>
+					</div>
+					<div class="p-mb-2" style="padding-top: 3px; padding-bottom: 10px;">
+						<p:outputLabel value="Follow me on Instagram:  ">
+							<a href="https://www.instagram.com/oahu_dreaming/" target="blank">@oahu_dreaming</a>
+						</p:outputLabel>
+					</div>
+					<div class="p-mb-2" style="padding-top: 3px; padding-bottom: 10px;">
+						<p:outputLabel value="Purchase my original watercolours and prints on Etsy: ">
+							<a href="http://etsy.com/shop/AquarelleStories/" target="blank">Aquarelle Stories</a>
+						</p:outputLabel>
+					</div>
+				</div>
+	
+			</div>
+		</div>
+		<!-- <div class="p-d-flex p-flex-column">
 			<div class="p-mb-2" style="padding-bottom: 20px;">
 				<h:outputText
 					value="If you are interested in any of my artwork or you have collaboration ideas, please, feel free to contact me!" />
@@ -56,14 +86,12 @@
 					<a href="http://etsy.com/shop/AquarelleStories/" target="blank">Aquarelle Stories</a>
 				</p:outputLabel>
 			</div>
-		</div>
+		</div> -->
 	</p:outputPanel>
 
 	<ui:insert name="footer">
 		<ui:include src="/WEB-INF/common/footer.xhtml" />
 	</ui:insert>
-	
-	</div>
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async="true"

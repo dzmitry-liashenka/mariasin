@@ -6,7 +6,7 @@
 	
 <body>
 		<h:form id="form">
-			<p:panelGrid id="gallery" class="p-d-inline" columns="3" layout="flex" rendered="true">
+ 			<p:panelGrid id="gallery" class="p-d-inline" columns="3" layout="flex" rendered="true">
 				<p:repeat var="image" value="#{dataGridView.images}">
 					<p:commandLink onclick="PF('#{image.id}_dlg').show();">
 						<p:graphicImage class="image-gallery-border gallery" name="#{image.pathSmall}" library="img"
@@ -19,18 +19,18 @@
 								closeOnEscape="true" 
 								modal="true"
 								maximizable="false" 
-								blockScroll="false"
+								blockScroll="true"
 								includeViewParams="true"
 								>
 						<f:facet name="header">
 							<h:outputText value="#{image.description}" />
 						</f:facet>
 						<div>
-							<p:graphicImage name="#{image.path}" library="img" style="max-height: 90vh; max-width: 90vh" />
+							<p:graphicImage name="#{image.path}" library="img" style="max-height: 800px; max-width: 800px" />
 						</div>
 					</p:dialog>
 				</p:repeat>
 			</p:panelGrid>
-		</h:form>
+	</h:form>
 </body>
 </html>

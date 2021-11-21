@@ -11,81 +11,89 @@
 </h:head>
 
 <h:body>
-	<p:outputPanel>
-		<ui:insert name="menu">
-			<ui:include src="/WEB-INF/common/menu.xhtml" />
-		</ui:insert>
-	</p:outputPanel>
+	<ui:insert name="menu">
+		<ui:include src="/WEB-INF/common/menu.xhtml" />
+	</ui:insert>
+	
 
 	<div class="center">
 		<h1 id="h1-about">About me</h1>
 	</div>
-	
-	<p:panelGrid columns="2" layout="flex" columnClasses="ui-md-12 ui-md-6 ">
-		<div class="p-d-inline">
-			<p:column>
-				<div class="card">
-					<p:graphicImage name="about/maria_sin.jpg" library="img"
-						width="350px" class="image-gallery-border"/>
-				</div>
-			</p:column>
-			<p:column>
-				<div>
-					<div>
-						<h:outputText value="Maria Sin was born in 1985 and raised in Belarus. In 2014
-							moved to Dresden, Germany, where received a degree in Chemistry.
-							Currently Maria is living in Bremen, Germany, and devotes all her
-							time to master watercolour. Truly in love with nature, its beauty
-							and diversity, Maria tries to find her way to express all her
-							feelings and inner passion to it. She is especially thrilled by
-							the seascapes and tries to capture that bright moments of freedom
-							and fickleness. Since 2021 she started to participate in
-							international watercolor exhibitions.">
-						
-						</h:outputText>
-					</div>
-					<div>
-						<div style="margin-top: 10px; margin-bottom: 5px; font-size: 120%; font-weight: 900;">
-							<h:outputText value="Exhibitions:" />
-						</div>
-						<div>
-							<ul>
-								<li><h:outputText
-										value="2021 International Pyrenees (France) Watercolour Contest and Exhibition" /></li>
-								<li><h:outputText
-										value="2021 JIWI 21st International watercolor exhibition Japan" /></li>
-								<li><h:outputText
-										value="2021 International contest of watercolor art Watercolorium, St. Petersburg, IIId place Diploma" />
-								</li>
-								<li><h:outputText
-										value="2021 1st International Watercolor Festival IWS Russia Watercolor with Love" />
-								</li>
-								<li><h:outputText
-										value="2021 IV International Watercolor Festival IWS Slovenia Castra 2021" />
-								</li>
-							</ul>
-						</div>
-						<div
-							style="margin-top: 10px; margin-bottom: 5px; font-size: 120%; font-weight: 900;">
-							<h:outputText value="Membership:" />
-						</div>
-						<div>
-							<ul>
-								<li><h:outputText
-										value="Member of German Watercolor Society" /></li>
-								<li><h:outputText
-										value=" Member of IWS Germany" /></li>
-								<li><h:outputText
-										value="Associated member of Japan International Watercolor Institute" /></li>
-							</ul>
-						</div>
-					</div>
 
+	<p:panelGrid columns="1" layout="flex">
+		<f:facet name="header">
+
+      
+
+		<div class="container">
+			<p:outputPanel>
+				<p:graphicImage name="about/maria_sin.jpg" library="img"
+					width="250px" class="image-gallery-border"
+					style="float: left; margin: 0em 1em 0em 0em;" />
+				<div style="text-align: left;">
+					<h:outputText
+						value="Maria Sin was born in 1985 and raised in Belarus. In 2014
+								moved to Dresden, Germany, where received a degree in Chemistry.
+								Currently Maria is living in Bremen, Germany, and devotes all her
+								time to master watercolour. Truly in love with nature, its beauty
+								and diversity, Maria tries to find her way to express all her
+								feelings and inner passion to it. She is especially thrilled by
+								the seascapes and tries to capture that bright moments of freedom
+								and fickleness. Since 2021 she started to participate in
+								international watercolor exhibitions." />
+	
 				</div>
-			</p:column>
+	
+	
+				<div class="left" style="margin-top: 30px; margin-bottom: 5px; font-size: 120%; font-weight: 900;">
+					<h:outputText value="Exhibitions:" />
+				</div>
+	
+				<div class="left">
+					<h:outputText class="left" value="&#8226; 2021 International Pyrenees (France) Watercolour Contest and Exhibition" />
+					<br />
+					
+					<h:outputText class="left" value="&#8226; 2021 JIWI 21st International watercolor exhibition Japan" />
+					<br />
+					
+					<h:outputText class="left" value="&#8226; 2021 International contest of watercolor art Watercolorium, St. Petersburg, IIId place Diploma" />
+					<br />
+		
+					<h:outputText class="left" value="&#8226; 2021 1st International Watercolor Festival IWS Russia Watercolor with Love" />
+					<br />
+		
+					<h:outputText class="left" value="&#8226; 2021 IV International Watercolor Festival IWS Slovenia Castra 2021" />
+					<br />
+				</div>
+	
+			</p:outputPanel>
+	
+	
+	
 		</div>
+	
+	  </f:facet>
+
+        
+        <p:outputPanel>
+			<div
+				style="margin-top: 50px; margin-bottom: 5px; font-size: 120%; font-weight: 900;">
+				<h:outputText value="Membership:" />
+			</div>
+			<h:outputText value="&#8226; Member of German Watercolor Society" />
+			<br />
+			<h:outputText value="&#8226; Member of IWS Germany" />
+			<br />
+			<h:outputText
+				value="&#8226; Associated member of Japan International Watercolor Institute" />
+			<br />
+
+		</p:outputPanel>
+        
 	</p:panelGrid>
-		<ui:insert name="footer">
+
+
+	<ui:insert name="footer">
 			<ui:include src="/WEB-INF/common/footer.xhtml" />
 		</ui:insert>
 

@@ -5,19 +5,7 @@
 	xmlns:p="http://primefaces.org/ui" >
 <h:head>
 	<title>Maria Sin - Watercolor artist - Gallery.</title>
-	<h:outputStylesheet library="css" name="styles.css">
-		.jqplot-series-canvas {
-			background: white;
-		}
-
-		.ui-datatable td {
-			font-size: 10px;
-		}
-
-		body .ui-datatable thead th .ui-column-title {
-			font-size: 10px;
-		}
-	</h:outputStylesheet>
+	<h:outputStylesheet library="css" name="styles.css" />
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 	<script data-ad-client="ca-pub-9948372161750078" async="true" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </h:head>
@@ -28,8 +16,7 @@
 			<ui:include src="/WEB-INF/common/menu.xhtml" />
 		</ui:insert>
 		<div class="ui-g">
-			<div class="ui-g-2"></div>
-			<div class="ui-g-8 center">
+			<div class="ui-g-12 center">
 				<h1>Gallery</h1>
 	
 				<ui:insert>
@@ -37,7 +24,6 @@
 				</ui:insert>
 
 			</div>
-			<div class="ui-g-2" />
 		</div>
 		<ui:insert name="footer">
 			<ui:include src="/WEB-INF/common/footer.xhtml" />

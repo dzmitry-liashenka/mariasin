@@ -2,8 +2,12 @@ package de.mariasin.shop.boundary;
 
 import static org.junit.Assert.fail;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,11 +45,17 @@ public class CustomerListBeanTest {
 	public void setUp() {
 	      session = createSession();
 	      image = new Image();
-//	      image.setId(100002);
 	      image.setDescription("image descriprion");
 	      image.setPrice(100);
 	      image.setImage("blablabla2".getBytes());
-//		image.setImage(IOUtils.toByteArray(getImageAsStream()));
+	      image.setImageSmall("imagesmall1".getBytes());
+	      image.setPath("pathToImage");
+	      image.setPathSmall("path to imageSmall");
+		try {
+			image.setImage(IOUtils.toByteArray(getImageAsStream()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Test
@@ -60,7 +70,7 @@ public class CustomerListBeanTest {
 			System.out.println(e.getMessage());
 			fail("Entity wurde nicht gespechert!");
 		}
-		System.out.println("Das Entity wurde in DB gespeichert.");
+		System.out.println(String.format("Das Entity %01$s wurde in DB gespeichert.", image));
 		
 		
 	}	
@@ -96,10 +106,15 @@ public class CustomerListBeanTest {
 	}
 
 	private InputStream getImageAsStream() {
-		InputStream inputStream = this.getClass()
-				  .getClassLoader()
-				  .getResourceAsStream("image1.png");
-		return inputStream;
+		File file = new File("/home/mitry/git/mariasin/src/test/resources/de/mariasin/shop/boundary/image1.png");
+		InputStream stream = null;
+		try {
+			stream = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return stream;
 	}
 
 
