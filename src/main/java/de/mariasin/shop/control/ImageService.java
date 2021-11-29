@@ -1,5 +1,6 @@
 package de.mariasin.shop.control;
 
+import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +8,18 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
+import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.primefaces.model.DefaultStreamedContent;
+
+import de.mariasin.shop.dto.ImageDto;
 import de.mariasin.shop.entity.Image;
+import de.mariasin.shop.util.HibernateUtil;
 
 @Named
 @ApplicationScoped
@@ -16,7 +27,11 @@ public class ImageService implements Serializable {
 
 	private static final long serialVersionUID = 3878414898549823840L;
 	
+	Logger logger = Logger.getLogger(this.getClass());
+	
 	private List<Image> images;
+	
+	private Session session;
 	
 	//String description, byte[] image, String path, byte[] imageSmall, String pathSmall
 	
@@ -42,9 +57,59 @@ public class ImageService implements Serializable {
     public List<Image> getImages() {
         return this.images;
     }
+
+    /**
+     * Liefert die Liste mit exitierte in der Datenbank {@linkplain Image}.
+     * @return Liste mit {@linkplain Image}
+     */
+    public List<Image> getBilder() {
+    	this.session = HibernateUtil.createSession();
+    	this.session.beginTransaction();
+		
+		CriteriaBuilder cb = session.getCriteriaBuilder();
+		CriteriaQuery<Image> cq = cb.createQuery(Image.class);
+	    Root<Image> rootEntry = cq.from(Image.class);
+	    CriteriaQuery<Image> all = cq.select(rootEntry);
+
+	    TypedQuery<Image> allQuery = session.createQuery(all);
+	    List<Image> resultList = allQuery.getResultList();
+//	    this.session.cancelQuery();
+	    this.session.close();
+	    
+        return resultList;
+ 
+    }
     
+    public List<ImageDto> getGalleryImages(){
+    	
+    	List<ImageDto> galleryImages = new ArrayList<>();
+    	List<Image> bilder = getBilder();
+    	
+    	for (Image image : bilder) {
+    		
+    		
+    		byte[] imageSmall = image.getImageSmall();
+    		DefaultStreamedContent smallContent = DefaultStreamedContent.builder()
+		    		.contentType("image/jpeg")
+		    		.stream(() -> new ByteArrayInputStream(imageSmall))
+		    		.build();
+    		
+    		byte[] bytesOfImage = image.getImage();
+    		DefaultStreamedContent content = DefaultStreamedContent.builder()
+    				.contentType("image/jpeg")
+    				.stream(() -> new ByteArrayInputStream(bytesOfImage))
+    				.build();
+    		
+    		ImageDto imageDto = new ImageDto(image.getId(), image.getDescription(), smallContent, content);
+    	
+    		galleryImages.add(imageDto);
+		}
+    	
+    	logger.info(String.format("GalleryImages mit size %01$s", galleryImages.size()));
+    	
+    	return galleryImages;
+    }
     
-    
-    
+
 
 }

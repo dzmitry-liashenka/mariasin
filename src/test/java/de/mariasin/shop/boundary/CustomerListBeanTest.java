@@ -7,18 +7,17 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.apache.commons.io.IOUtils;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -74,6 +73,30 @@ public class CustomerListBeanTest {
 		
 		
 	}	
+	
+	@Test
+	public void getAll() {
+
+		try {
+			session.beginTransaction();
+//			session.save(image);
+//			session.getTransaction().commit();
+			
+			CriteriaBuilder cb = session.getCriteriaBuilder();
+			CriteriaQuery<Image> cq = cb.createQuery(Image.class);
+		    Root<Image> rootEntry = cq.from(Image.class);
+		    CriteriaQuery<Image> all = cq.select(rootEntry);
+
+		    TypedQuery<Image> allQuery = session.createQuery(all);
+		    List<Image> resultList = allQuery.getResultList();
+			System.out.println(resultList.size());
+			resultList.forEach(i -> System.out.println(i.getDescription()));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			fail("Keine entity wurde gefunden!");
+		}
+		
+	}
 	
 	@Test
 	public void testFind() {

@@ -1,17 +1,95 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <f:view>
     <h:head></h:head>
     <h:body>
-        <p:outputLabel>Welcome to the application!</p:outputLabel>
- 
-        <p>Logged-in as #{request.userPrincipal.name}</p>
- 
-        <h:form>
-            <p:commandButton value="Logout" action="#{logoutBacking.submit}"/>
+    
+    <p:growl id="messages" showDetail="true"/>
+    
+        <h:form enctype="multipart/form-data">
+		<p:card id="login-card">
+	        <div class="left" >
+	            <p:commandButton value="Logout" action="#{logoutBacking.submit}" />
+	        </div>
+
+	        <p>Logged-in as #{request.userPrincipal.name}</p>
+    	    <p:outputLabel>Welcome to the application!</p:outputLabel>
+		</p:card>	
+    	    
+        <p:card id="image-form">
+        <h3>
+        	<h:outputText value="Upload new Image to Gallery" />
+        </h3>
+    	    <div class="card">
+    	    
+    	    <div class="p-grid" style="margin-top: .5rem; margin-bottom: .5rem;">
+	    	    <div class="p-col">
+		    	    <p:outputLabel for="description" value="Description: " />
+		    	    <p:inputTextarea id="description" value="#{saveData.description}" required="true" requiredMessage="Description is required!"/>
+	    	    </div>
+	    	</div>    
+	    	    
+	    	  <div class="p-grid" style="margin-top: .5rem; margin-bottom: .5rem;">
+	    	   	<div class="p-col">
+	    	   		<p:fileUpload value="#{imageSmallUploadView.file}" required="true" requiredMessage="Small image is required" title="Upload small Image" mode="simple"  sizeLimit="200000" skinSimple="true"/>
+	    	   		<p:commandButton value="Upload"  ajax="false" action="#{imageSmallUploadView.upload}" styleClass="p-mt-3 ui-button-outlined p-d-block" />
+	    	    </div>
+	    	  </div>
+	    	
+	    	 <div class="p-grid" style="margin-top: .5rem; margin-bottom: .5rem;">
+	    	    <div class="p-col">
+	    	    	<p:fileUpload value="#{imageUploadView.file}" required="true" requiredMessage="Image is required" title="Upload Image" mode="simple" chooseButtonTitle="Image" sizeLimit="10000000" skinSimple="true"/>
+	    	    	<p:commandButton value="Upload"  ajax="false" action="#{imageUploadView.upload}" styleClass="p-mt-3 ui-button-outlined p-d-block" />
+	    	    </div>
+	    	  </div>
+    	    
+	    	  <div class="p-grid" style="margin-top: .5rem; margin-bottom: .5rem;">
+		   	   	<div class="p-col">
+		    		<p:commandButton value="Save"  action="#{saveData.save}" >
+		    			<f:ajax execute="@form" render="@form" update="@form datatable"/>
+		    		</p:commandButton>
+	    	    </div>
+	    	  </div>
+    	    </div>
+        </p:card>
+        <br />
+  
+        
+       <p:card id="datatable">
+        	<p:dataTable value="#{imageService.galleryImages}" var="bild"
+        	paginator="true"
+        	paginatorTemplate="">
+        	 	<p:column headerText="ID">
+        			<h:outputText value="#{bild.id}" />
+        		</p:column>
+        	 	<p:column headerText="Description">
+        			<h:outputText value="#{bild.description}" />
+        		</p:column>
+        	 	<p:column headerText="Image small">
+        			<p:graphicImage value="#{bild.imageSmall}"
+        			 				alt="image"
+        			 				cache="false"
+        			 				stream="false"
+        			 				height="100px"  />
+        		</p:column>
+        	 	<p:column headerText="Image">
+        			<p:graphicImage value="#{bild.image}"
+        			 				alt="image"
+        			 				cache="false"
+        			 				stream="false"
+        			 				height="100px"  />
+        		</p:column>
+        	</p:dataTable>
+        </p:card>
+    	    
+    	    
+    	    
         </h:form>
+ 
+ 
     </h:body>
 </f:view>
 </html>
