@@ -79,15 +79,15 @@ public class SaveData {
 
 	}
 	
-	//TODO delete Image aus der DB
-	public Image delete(Integer id) {
+	public Image delete(String id) {
 		logger.info(String.format("Delete Image with ID = %01$s", id));
+		
 		Image delete = null;
 		try {
 			this.session = HibernateUtil.createSession();
 			logger.info("Session open: " + session.isOpen());
 			this.session.beginTransaction();
-			delete = this.session.load(Image.class, id);
+			delete = this.session.load(Image.class, Integer.valueOf(id));
 			if (null != delete) {
 				this.session.delete(delete);
 			}

@@ -1,5 +1,6 @@
 package de.mariasin.shop.boundary;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -12,10 +13,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.inject.Inject;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
 import org.apache.commons.io.IOUtils;
 import org.hibernate.Session;
@@ -27,8 +30,10 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import de.mariasin.shop.control.SaveData;
 import de.mariasin.shop.entity.Image;
 import de.mariasin.shop.entity.User;
 
@@ -39,6 +44,9 @@ public class CustomerListBeanTest {
 	private Session session;
 	
 	private Image image;
+	
+	@Inject
+	SaveData saveData;
 	
 	@Before
 	public void setUp() {
@@ -96,6 +104,57 @@ public class CustomerListBeanTest {
 			fail("Keine entity wurde gefunden!");
 		}
 		
+	}
+	
+	@Ignore("Transactional funktioniert nicht")
+	@Transactional(rollbackOn = Image.class)
+	@Test
+	public void testDelete() {
+		try {
+			session.beginTransaction();
+			
+			CriteriaBuilder cb = session.getCriteriaBuilder();
+			CriteriaQuery<Image> cq = cb.createQuery(Image.class);
+		    Root<Image> rootEntry = cq.from(Image.class);
+		    CriteriaQuery<Image> all = cq.select(rootEntry);
+
+		    TypedQuery<Image> allQuery = session.createQuery(all);
+		    List<Image> resultList = allQuery.getResultList();
+			int sizeBeforeDelete = resultList.size();
+			System.out.println(sizeBeforeDelete);
+			resultList.forEach(i -> System.out.println(i.getDescription() + i.getId()));
+			
+			Integer id = resultList.get(0).getId();
+
+			session.close();
+			
+			if (null == saveData) {
+				saveData = new SaveData();
+			}
+			
+			Image delete = saveData.delete(String.valueOf(resultList.get(0).getId()));
+			
+			assertTrue(delete.getId().equals(id));
+			
+			session = createSession();
+			session.beginTransaction();
+			cb = session.getCriteriaBuilder();
+			cq = cb.createQuery(Image.class);
+		    rootEntry = cq.from(Image.class);
+		    all = cq.select(rootEntry);
+
+		    allQuery = session.createQuery(all);
+		    resultList = allQuery.getResultList();
+		    int sizeAfterDelete = resultList.size();
+			System.out.println(sizeAfterDelete);
+			resultList.forEach(i -> System.out.println(i.getDescription() + i.getId()));
+			
+			assertTrue(sizeAfterDelete < sizeBeforeDelete);
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			fail("Keine entity wurde gefunden!");
+		}
 	}
 	
 	@Test
