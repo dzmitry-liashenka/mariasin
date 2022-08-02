@@ -71,10 +71,11 @@ public class SaveData {
 			this.session.beginTransaction();
 			this.session.save(this.uploadedImage);
 			this.session.getTransaction().commit();
-			this.session.close();
 			logger.info(String.format("Das Entity %01$s wurde in DB gespeichert.", uploadedImage));
 		} catch (Exception e) {
 			logger.error(e.getMessage());
+		} finally {
+			this.session.close();
 		}
 
 	}
@@ -92,10 +93,11 @@ public class SaveData {
 				this.session.delete(delete);
 			}
 			this.session.getTransaction().commit();
-			this.session.close();
-			logger.info(String.format("Das Entity %01$s wurde in DB gespeichert.", uploadedImage));
+			logger.info(String.format("Das Entity %01$s wurde aus der DatenBank gelöscht.", uploadedImage));
 		} catch (Exception e) {
 			logger.error(e.getMessage());
+		} finally {
+			this.session.close();
 		}
 		return delete;
 	}

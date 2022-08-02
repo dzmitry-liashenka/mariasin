@@ -13,6 +13,7 @@ import javax.inject.Named;
 import org.primefaces.PrimeFaces;
 
 import de.mariasin.shop.control.ImageService;
+import de.mariasin.shop.dto.ImageDto;
 import de.mariasin.shop.entity.Image;
 
 @Named
@@ -21,7 +22,7 @@ public class DataGridView implements Serializable {
 
 	private static final long serialVersionUID = 6764466183521817274L;
 
-	private List<Image> images;
+	private List<ImageDto> images;
     private Image selectedImage;
     
     
@@ -33,7 +34,7 @@ public class DataGridView implements Serializable {
     	images = imageService.getImages();
     }
     
-    public List<Image> getImages() {
+    public List<ImageDto> getImages() {
 		return images;
     }
     

@@ -4,7 +4,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <f:view>
-    <h:head></h:head>
+    <h:head>Upload from Images</h:head>
     <h:body>
     
     <p:growl id="messages" showDetail="true"/>
@@ -15,7 +15,9 @@
 	            <p:commandButton value="Logout" action="#{logoutBacking.submit}" />
 	        </div>
 
-	        <p>Logged-in as #{request.userPrincipal.name}</p>
+	        <p>Logged-in as 
+	        	<h:outputText value="#{request.userPrincipal.name}" />
+	        </p>
     	    <p:outputLabel>Welcome to the application!</p:outputLabel>
 		</p:card>	
     	    

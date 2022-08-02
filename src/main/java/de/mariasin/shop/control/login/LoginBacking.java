@@ -1,5 +1,7 @@
 package de.mariasin.shop.control.login;
-import javax.enterprise.context.RequestScoped;
+import java.io.IOException;
+
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -14,10 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.io.IOException;
 
 @Named
-@RequestScoped
+@ApplicationScoped
 public class LoginBacking {
 
     @NotEmpty

@@ -29,7 +29,7 @@ public class ImageService implements Serializable {
 	
 	Logger logger = Logger.getLogger(this.getClass());
 	
-	private List<Image> images;
+	private List<ImageDto> images;
 	
 	private Session session;
 	
@@ -52,11 +52,11 @@ public class ImageService implements Serializable {
 //		images.add(new Image(12, "Paris 31x41cm 2021", "gallery/Paris.jpg", "gallery/small/Paris.jpg"));
 //		images.add(new Image(13, "Dresden 41x31cm 2021", "gallery/Dresden.jpg", "gallery/small/Dresden.jpg"));
 		
-		images.addAll(getBilder());
+		images.addAll(getGalleryImages());
 		
 	}
 	
-    public List<Image> getImages() {
+    public List<ImageDto> getImages() {
         return this.images;
     }
 
